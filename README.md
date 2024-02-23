@@ -13,6 +13,8 @@ In the first, I'll tell you a little about the DBMS. My experience is based on t
 ><p>• OLAP;</p>
 ><p>• Columnnar.</p>
 
+><u><b>I also want to warn you that any of the data listed below does not in any way reflect current or ever past expenses of any company!</b></u>
+
 <p
     align = "center"
     style = "color:FireBrick">
