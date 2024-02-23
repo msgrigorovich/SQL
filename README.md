@@ -35,11 +35,11 @@ ORDER BY created_at DESC
 The output from this query will look something like this:
 created_at | activity_kind| event_name | ab_group | base_parameters
 ------------ | ------------- | ------------- | ------------- | -------------
-2024-02-23 11:30:58 | event| GameExit | Testing | {total_time; win_score; lose_score ...}
-2024-02-23 11:29:56 | event| CoreOpen | Testing | {total_time; win_score; lose_score ...}
-2024-02-23 11:29:41 | event| PreferencesSelected | Testing | {total_time; win_score; lose_score ...}
-2024-02-23 11:07:06 | event| RegimeChanged | Testing | {total_time; win_score; lose_score ...}
-2024-02-23 11:07:02 | event| SessionStart| Testing | {total_time; win_score; lose_score ...}
+2024-02-23 11:30:58 | event| GameExit | Testing | {total_time; win_score; ...}
+2024-02-23 11:29:56 | event| CoreOpen | Testing | {total_time; win_score; ...}
+2024-02-23 11:29:41 | event| PreferencesSelected | Testing | {total_time; ...}
+2024-02-23 11:07:06 | event| RegimeChanged | Testing | {total_time; win_score; ...}
+2024-02-23 11:07:02 | event| SessionStart| Testing | {total_time; win_score; ...}
 2024-02-23 11:05:58 | install| | | 
 etc | etc| etc| etc| etc
 
@@ -84,16 +84,16 @@ ORDER BY created_at DESC
 The output from this query will look something like this:
 created_at | ad_type | ad_placement | ad_status |  base_parameters | 
 ------------ | ------------- |  ------------- |  ------------- |  ------------- |
-2024-01-21 17:54:32 | Banner | Core | End | {total_time; wins_score ...} |
-2024-01-23 15:25:52 | Rewarded | Shop | Fail | {total_time; wins_score ...} | 
-2024-01-23 15:23:43 | Rewarded | Shop | Complete | {total_time; wins_score ...} | 
-2024-01-23 15:20:04 | Rewarded | Shop | Complete | {total_time; wins_score ...} | 
-2024-01-22 16:04:17 | Interstitial | CoreExit | Complete | {total_time; wins_score ...} | 
-2024-01-22 16:04:14 | Interstitial | CoreExit | Click | {total_time; wins_score ...} | 
-2024-01-22 16:04:13 | Interstitial | CoreExit | Click | {total_time; wins_score ...} | 
-2024-01-22 16:03:44 | Interstitial | CoreExit | Start | {total_time; wins_score ...} | 
-2024-01-22 15:01:51 | Banner | Core | Start | {total_time; wins_score ...} | 
-2024-01-21 17:54:32 | Banner | Core | Start | {total_time; wins_score ...} | 
+2024-01-21 17:54:32 | Banner | Core | End | {total_time; wins_score; ...} |
+2024-01-23 15:25:52 | Rewarded | Shop | Fail | {total_time; wins_score; ...} | 
+2024-01-23 15:23:43 | Rewarded | Shop | Complete | {total_time; wins_score; ...} | 
+2024-01-23 15:20:04 | Rewarded | Shop | Complete | {total_time; wins_score; ...} | 
+2024-01-22 16:04:17 | Interstitial | CoreExit | Complete | {total_time; wins_score; ...} | 
+2024-01-22 16:04:14 | Interstitial | CoreExit | Click | {total_time; wins_score; ...} | 
+2024-01-22 16:04:13 | Interstitial | CoreExit | Click | {total_time; wins_score; ...} | 
+2024-01-22 16:03:44 | Interstitial | CoreExit | Start | {total_time; wins_score; ...} | 
+2024-01-22 15:01:51 | Banner | Core | Start | {total_time; wins_score; ...} | 
+2024-01-21 17:54:32 | Banner | Core | Start | {total_time; wins_score; ...} | 
 etc | etc | etc | etc | etc | 
 
 The data must correspond to my actions performed on the device being tested for the corresponding test-cases for advertising monetization. In this case, the logging compliance is checked the compliance with the time of event creation, the type of advertising, its placement and status is checked.
@@ -119,5 +119,5 @@ Complete | 4064 |
 Fail | 3 |
 
 You can visualize the result as a diagram (_in most cases, this is supported by database frameworks_)
-![UserAnrByAds]()
+![UsersAnrByAds](https://github.com/msgrigorovich/SQL/blob/main/README_PHOTO/UsersAnrByAds.jpg?raw=true)
 Based on the response data, you can see that the amount of similar cases is quite small. Which helps to prioritize potential bugs, even the next advertising placement that has not yet been implemented.
