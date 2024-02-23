@@ -183,3 +183,14 @@ You can visualize the result as a diagram (_in most cases, this is supported by 
 
 Now we can not only see the quantitative assessment, but also imagine which of the networks enjoys a higher rate.
 
+___
+
+<p
+    align = "center">
+    I hope this material was informative and interesting. I was very happy to share my skills with you!
+</p>
+<h1
+    align = "center"
+    style = "color:FireBrick">
+    Thanks for your attention!
+</h1>
