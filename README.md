@@ -24,8 +24,8 @@ The key and most popular request is a request to display all the user’s analyt
 ```SQL
 SELECT 	created_at,
         activity_kind,
-		event_name,
-		JSONExtractString(base_parameters, 'ab_group') AS ab_group,
+	event_name,
+	JSONExtractString(base_parameters, 'ab_group') AS ab_group,
         base_parameters -- global_events_example; used in json
 FROM AdjustData.RealTimeAnalytics -- database_and_tableview_example
 WHERE user_id = 'EF8C20B5-6CBD-4EF3-A3A5-ADDFCA1DF335' -- user_id_example
@@ -52,7 +52,7 @@ AND activity_kind <> ('install','session')
 We slightly touched AB-groups, so next I would consider a request to count the number of unique users in a particular AB-group:
 ```SQL
 SELECT	app_version,
-		ab_group,
+	ab_group,
 count (distinct user_id) AS users_unique -- user_id_example
 FROM ProductData.ProjectName_product -- database_and_tableview_example
 WHERE  ab_group LIKE '%021%' -- ab_group_number_example
@@ -71,10 +71,10 @@ One of the reasons I track data like this is to ensure that users are correctly 
 Due to the fact that the vast majority of my experience is tied to mobile game development, advertising monetization and everything connected with it plays a rather important role. Including advertising monetization analytics. Consider a request to search for the activity of a specific user (_tester_):
 ```SQL
 SELECT	created_at,
-		JSONExtractString(base_parameters,'type') AS ad_type,
-		JSONExtractString(base_parameters,'ad_placement') AS ad_placement,
-		JSONExtractString(base_parameters,'status') AS ad_status,
-		base_parameters -- global_events_example; used in json
+	JSONExtractString(base_parameters,'type') AS ad_type,
+	JSONExtractString(base_parameters,'ad_placement') AS ad_placement,
+	JSONExtractString(base_parameters,'status') AS ad_status,
+	base_parameters -- global_events_example; used in json
 FROM AdjustData.RealTimeAnalytics -- database_and_tableview_example
 WHERE toDate(created_at) = today()
 AND event_name = 'AdView'
@@ -102,7 +102,7 @@ The data must correspond to my actions performed on the device being tested for 
 As you may have noticed from the data in the chapter above, one of the results of viewing an advertisement `ad_status = Fail`. During the post-release process and for further sampling of restrictions on certain advertising placements, it is useful to understand how often viewing an advertisement leads to application crashes. Similar analyzes can be carried out using the following query:
 ```SQL
 SELECT	JSONExtractString(base_parameters,'status') AS ad_status,
-		COUNT(ad_status) AS count
+	COUNT(ad_status) AS count
 FROM AdjustData.RealTimeAnalytics
 WHERE toDate(created_at) >= '2024-02-02'
 AND event_name = 'AdView'
@@ -126,11 +126,11 @@ Based on the response data, you can see that the amount of similar cases is quit
 Ad monetization is one of the most unstable areas of testing that I have encountered. Sometimes, when testing a particular advertising network, the advertising debugger generated an error, but is it relevant in production? If there was no update compared to the PROD version in the test, you can use user analytics, which will most likely answer this question. This can be done using the following query with Google AdMob Network:
 ```SQL
 SELECT	app_name,
-		created_at,
-		store,
-		ad_network,
-		ad_placement,
-		ad_type
+	created_at,
+	store,
+	ad_network,
+	ad_placement,
+	ad_type
 FROM AdjustData.TableViewExample -- database_and_tableview_example
 WHERE app_name = 'com.CompaneName.ProjectName'
 AND toDate(created_at) = today()
@@ -155,8 +155,8 @@ User data convinces that the Google AdMob Network and is supported by advertisin
 If you need to verify the stability of networks at the aggregate level, you can use the following query, which will return all networks built into the product:
 ```SQL
 SELECT	ad_network AS networks,
-		--uniqExact(ad_revenue_network),
-		COUNT(ad_network) AS impressions
+	--uniqExact(ad_network),
+	COUNT(ad_network) AS impressions
 FROM AdjustData.TableViewExample -- database_and_tableview_example
 WHERE app_name = 'com.CompanyName.ProjectName'
 AND toDate(created_at) >= '2024-02-15'
