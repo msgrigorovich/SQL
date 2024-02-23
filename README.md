@@ -37,7 +37,7 @@ created_at | activity_kind| event_name | ab_group | base_parameters
 ------------ | ------------- | ------------- | ------------- | -------------
 2024-02-23 11:30:58 | event| GameExit | Testing | {total_time; win_score; ...}
 2024-02-23 11:29:56 | event| CoreOpen | Testing | {total_time; win_score; ...}
-2024-02-23 11:29:41 | event| PreferencesSelected | Testing | {total_time; ...}
+2024-02-23 11:29:41 | event| PreferencesSelected | Testing | {total_time; win_score; ...}
 2024-02-23 11:07:06 | event| RegimeChanged | Testing | {total_time; win_score; ...}
 2024-02-23 11:07:02 | event| SessionStart| Testing | {total_time; win_score; ...}
 2024-02-23 11:05:58 | install| | | 
@@ -132,7 +132,7 @@ SELECT	app_name,
 	ad_placement,
 	ad_type
 FROM AdjustData.TableViewExample -- database_and_tableview_example
-WHERE app_name = 'com.CompaneName.ProjectName'
+WHERE app_name = 'com.CompanyName.ProjectName'
 AND toDate(created_at) = today()
 AND activity_kind = 'ad_revenue'
 AND ad_network = 'Google AdMob' -- for example
@@ -143,10 +143,10 @@ ORDER BY created_at DESC
 The output from this query will look something like this:
 app_name | created_at | store | ad_network | ad_placement | ad_type |
 ------------ | ------------- | ------------- | ------------- | ------------- | ------------- |
-com.CompaneName.ProjectName |2024-01-19 16:16:02 | google | Google AdMob | CoreExit | Interstitial |
-com.CompaneName.ProjectName |2024-01-19 17:15:44 | itunes | Google AdMob | CoreExit | Interstitial |
-com.CompaneName.ProjectName |2024-01-19 17:15:42 | itunes | Google AdMob | Shop | Rewarded |
-com.CompaneName.ProjectName |2024-01-19 17:14:37 | google | Google AdMob | Core | Banner |
+com.CompanyName.ProjectName |2024-01-19 16:16:02 | google | Google AdMob | CoreExit | Interstitial |
+com.CompanyName.ProjectName |2024-01-19 17:15:44 | itunes | Google AdMob | CoreExit | Interstitial |
+com.CompanyName.ProjectName |2024-01-19 17:15:42 | itunes | Google AdMob | Shop | Rewarded |
+com.CompanyName.ProjectName |2024-01-19 17:14:37 | google | Google AdMob | Core | Banner |
 etc | etc | etc | etc | etc | etc |
 
 User data convinces that the Google AdMob Network and is supported by advertising placements of our product.
