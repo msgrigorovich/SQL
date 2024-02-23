@@ -119,7 +119,7 @@ Complete | 4064 |
 Fail | 3 |
 
 You can visualize the result as a diagram (_in most cases, this is supported by database frameworks_)
-![UsersAnrByAds](https://github.com/msgrigorovich/SQL/blob/main/README_PHOTO/UsersAnrByAds.jpg?raw=true)
+![UsersAnrByAds](https://github.com/msgrigorovich/SQL/blob/main/README_PICTURES/UsersAnrByAds.jpg?raw=true)
 Based on the response data, you can see that the amount of similar cases is quite small. Which helps to prioritize potential bugs, even the next advertising placement that has not yet been implemented.
 
 ## [Users activity by ad network used](https://github.com/msgrigorovich/SQL/blob/main/SQL-Requests/user_activity_by_network_ad_views.sql)
@@ -179,7 +179,7 @@ DT Exchange | 137 |
 etc | etc |
 
 You can visualize the result as a diagram (_in most cases, this is supported by database frameworks_)
-![CountNetworksActivity](https://github.com/msgrigorovich/SQL/blob/main/README_PHOTO/CountNetworksActivity.jpg?raw=true)
+![CountNetworksActivity](https://github.com/msgrigorovich/SQL/blob/main/README_PCITURES/CountNetworksActivity.jpg?raw=true)
 
 Now we can not only see the quantitative assessment, but also imagine which of the networks enjoys a higher rate.
 
