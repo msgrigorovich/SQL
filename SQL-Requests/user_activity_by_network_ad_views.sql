@@ -5,7 +5,7 @@ SELECT	app_name,
 		ad_placement,
 		ad_type
 FROM AdjustData.TableViewExample -- database_and_tableview_example
-WHERE app_name = 'com.CompaneName.ProjectName'
+WHERE app_name = 'com.CompanyName.ProjectName'
 AND toDate(created_at) = today()
 AND activity_kind = 'ad_revenue'
 AND ad_network = 'Google AdMob' -- for example

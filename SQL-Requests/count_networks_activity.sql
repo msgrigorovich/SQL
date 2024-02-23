@@ -1,5 +1,5 @@
 SELECT	ad_network AS networks,
-		--uniqExact(ad_revenue_network),
+		--uniqExact(ad_network),
 		COUNT(ad_network) AS impressions
 FROM AdjustData.TableViewExample -- database_and_tableview_example
 WHERE app_name = 'com.CompanyName.ProjectName'
