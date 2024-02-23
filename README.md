@@ -179,7 +179,7 @@ DT Exchange | 137 |
 etc | etc |
 
 You can visualize the result as a diagram (_in most cases, this is supported by database frameworks_)
-![CountNetworksActivity](https://github.com/msgrigorovich/SQL/blob/main/README_PCITURES/CountNetworksActivity.jpg?raw=true)
+![CountNetworksActivity](https://github.com/msgrigorovich/SQL/blob/main/README_PICTURES/CountNetworksActivity.jpg?raw=true)
 
 Now we can not only see the quantitative assessment, but also imagine which of the networks enjoys a higher rate.
 
