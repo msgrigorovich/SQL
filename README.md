@@ -201,10 +201,10 @@ Now we can not only see the quantitative assessment, but also imagine which of t
 I would also like to touch on one more type of request that is used quite often. Next we will talk about requests for custom saves. We can access and perform almost any manipulation on any user's saves if necessary (_and providing the project's architecture_). For example, the request below returns the user’s saves through some social network:
 ```SQL
 SELECT	created_at,
-    event_name,
-    JSONExtractString(base_parameters,'reason') AS reason, -- sync placement
-    JSONExtractString(base_parameters,'social_network') AS social_network,
-    base_parameters -- global_events_example; used in json
+  	event_name,
+    	JSONExtractString(base_parameters,'reason') AS reason, -- sync placement
+    	JSONExtractString(base_parameters,'social_network') AS social_network,
+    	base_parameters -- global_events_example; used in json
 FROM AdjustData.RealTimeAnalytics -- database_and_tableview_example
 WHERE toDate(created_at) >= '2024-01-01'
 AND event_name = 'SocialConnected'
@@ -227,16 +227,16 @@ In this case, when the user decides to save his progress through a social networ
 In my work, quite often I come across users who have lost their progress in this way. However, if he contacted the developer, then we always have the opportunity to pull out this save and install it again. This is done in a matter of minutes.
 
 ## [Users states by any step](https://github.com/msgrigorovich/SQL/blob/main/SQL-Requests/user_states.sql)
-Saving your data using your social network ID is truly reliable. But what if the user mixed up the social network and restored the wrong saves. The request below allows you to track the change in user saves with each action in our application:
+Saving your data using your social network ID is truly reliable. But what if the user mixed up the social network and restored the wrong saves? The request below allows you to track the change in user saves with each action in our application:
 ```SQL
 SELECT	bundle_id,
-    app_version,
-    event_time,
-    process,
-    login,
-    if	(notEmpty((JSONExtractString(request,'state')) AS state_request),
-        (JSONExtractString(request  ,'state')) AS state_request,
-        (JSONExtractString(response ,'state')) AS state_response) AS state_encode
+    	app_version,
+ 	event_time,
+ 	process,
+  	login,
+	if	(notEmpty((JSONExtractString(request,'state')) AS state_request),
+		(JSONExtractString(request  ,'state')) AS state_request,
+		(JSONExtractString(response ,'state')) AS state_response) AS state_encode
 FROM UsersStates -- exmaple TableName
 WHERE user_id = 'FC8BF1B5-8083-41D6-A6C9-2D3D8C859565' -- user_id_example
 AND toDate(event_time) >= '2024-01-01'
@@ -257,7 +257,7 @@ From the output data we can notice that the user replaced his state with the sta
 
 In fact, as mentioned above, we can track the user’s saving at any step he takes. Therefore, a user, for example, may accidentally spend some currency and ask us to roll back this change. There may be a lot of options, but not all of them are worthy of attention.
 
-I would also like to note that I did not say above, the user’s state is most often issued encrypted (_that’s why the field is called `state_encode`_). This is done from the point of view of optimizing data storage and security. In the example table with the output data, I did not encrypt them, just for clarity. But if they are encrypted, then you need to use the `decrypt`-function (-depending on what DBMS you have-), or any online decoder.
+I would also like to note that I did not say above, the user’s state is most often issued encrypted (_that’s why the field is called `state_encode`_). This is done from the point of view of optimizing data storage and security. In the example table with the output data, I did not encrypt them, just for clarity. But if they are encrypted, then you need to use the `decrypt`-function (_depending on what DBMS you have_), or any online decoder.
 
 ___
 
