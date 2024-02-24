@@ -3,7 +3,7 @@ SELECT	bundle_id,
         event_time,
         process,
         login,
-        if	(notEmpty((JSONExtractString(request,'state')) AS state_request),
+        if  (notEmpty((JSONExtractString(request,'state')) AS state_request),
             (JSONExtractString(request  ,'state')) AS state_request,
             (JSONExtractString(response ,'state')) AS state_response) AS state_encode
 FROM UsersStates -- exmaple TableName
