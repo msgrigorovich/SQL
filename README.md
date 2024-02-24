@@ -185,6 +185,68 @@ You can visualize the result as a diagram (_in most cases, this is supported by 
 
 Now we can not only see the quantitative assessment, but also imagine which of the networks enjoys a higher rate.
 
+## [Users states by social id](https://github.com/msgrigorovich/SQL/blob/main/SQL-Requests/user_states_by_social.sql)
+I would also like to touch on one more type of request that is used quite often. Next we will talk about requests for custom saves. We can access and perform almost any manipulation on any user's saves if necessary (_and providing the project's architecture_). For example, the request below returns the user’s saves through some social network:
+```SQL
+SELECT	created_at,
+    event_name,
+    JSONExtractString(base_parameters,'reason') AS reason, -- sync placement
+    JSONExtractString(base_parameters,'social_network') AS social_network,
+    base_parameters -- global_events_example; used in json
+FROM AdjustData.RealTimeAnalytics -- database_and_tableview_example
+WHERE toDate(created_at) >= '2024-01-01'
+AND event_name = 'SocialConnected'
+AND user_id = '0a4f8c7f-cbf6-4428-9778-917e7b176fd5' -- user_id_example
+ORDER BY created_at DESC
+```
+The output from this request will look something like this:
+
+created_at | event_name | reason | social_network | base_parameters |
+------------ | ------------- |------------ | ------------- |------------ |
+2024-01-24 16:16:02 | SocialConnected | MainMenu | Google | {total_time; wins_score; ...} |
+2024-01-21 16:16:02 | SocialConnected | SettingsMenu | Google | {total_time; wins_score; ...} |
+2024-01-18 16:16:02 | SocialConnected | SettingsMenu | Apple | {total_time; wins_score; ...} |
+2024-01-06 16:16:02 | SocialConnected | MainMenu | Google | {total_time; wins_score; ...} |
+2024-01-02 16:16:02 | SocialConnected | MainMenu | Facebook | {total_time; wins_score; ...} |
+etc | etc | etc | etc | etc |
+
+In this case, when the user decides to save his progress through a social network, a unique identifier is created, which becomes the primary and highest priority user ID. The fact is that gaining access to IDFA is questionable and depends on the user’s decision. And even if the user agrees to IDFA tracking, this is still not considered an absolutely safe option, because the user always has the opportunity to reset/disable IDFA through the system settings of the device. Which leads to the generation of a user ID, but valid only within our project. Generating such an ID is considered unstable, because if our application is reinstalled, this ID will be generated anew and the user will lose his progress. Thus, the most reliable way to store your saves is through social networks.
+
+In my work, quite often I come across users who have lost their progress in this way. However, if he contacted the developer, then we always have the opportunity to pull out this save and install it again. This is done in a matter of minutes.
+
+## [Users states by any step](https://github.com/msgrigorovich/SQL/blob/main/SQL-Requests/user_states.sql)
+Saving your data using your social network ID is truly reliable. But what if the user mixed up the social network and restored the wrong saves. The request below allows you to track the change in user saves with each action in our application:
+```SQL
+SELECT	bundle_id,
+    app_version,
+    event_time,
+    process,
+    login,
+    if	(notEmpty((JSONExtractString(request,'state')) AS state_request),
+        (JSONExtractString(request  ,'state')) AS state_request,
+        (JSONExtractString(response ,'state')) AS state_response) AS state_encode
+FROM UsersStates -- exmaple TableName
+WHERE user_id = 'FC8BF1B5-8083-41D6-A6C9-2D3D8C859565' -- user_id_example
+AND toDate(event_time) >= '2024-01-01'
+AND bundle_id = 'com.CompanyName.ProjectName'
+ORDER BY event_time DESC
+```
+The output from this request will look something like this:
+bundle_id | app_version | event_time | process | login | state_encode |
+------------ | ------------- |------------ | ------------- | ------------- |------------ |
+com.CompanyName.ProjectName | 1.74 | 2024-01-25 16:13:31 | LOAD | 145807315230377 | {FirstLaunchVersion: 1.74; ...} |
+com.CompanyName.ProjectName | 1.74 | 2024-01-25 16:13:28 | SAVE | 145807315230377 | {FirstLaunchVersion: 1.74; ...} |
+com.CompanyName.ProjectName | 1.74 | 2024-01-25 16:13:27 | RESOLVE | 145807315230377 | {FirstLaunchVersion: 1.74; ...} |
+com.CompanyName.ProjectName | 1.74 | 2024-01-25 16:13:03 | LOAD |  | {FirstLaunchVersion: 1.23; ...} |
+com.CompanyName.ProjectName | 1.74 | 2024-01-25 16:12:52 | LOAD |  | {FirstLaunchVersion: 1.23; ...} |
+etc | etc | etc | etc | etc | etc |
+
+From the output data we can notice that the user replaced his state with the starting version 1.23 with a state with the starting version 1.74. It’s easy to take the state before replacement and pass it on to the user just as before.
+
+In fact, as mentioned above, we can track the user’s saving at any step he takes. Therefore, a user, for example, may accidentally spend some currency and ask us to roll back this change. There may be a lot of options, but not all of them are worthy of attention.
+
+I would also like to note that I did not say above, the user’s state is most often issued encrypted (_that’s why the field is called `state_encode`_). This is done from the point of view of optimizing data storage and security. In the example table with the output data, I did not encrypt them, just for clarity. But if they are encrypted, then you need to use the `decrypt`-function (-depending on what DBMS you have-), or any online decoder.
+
 ___
 
 <p
