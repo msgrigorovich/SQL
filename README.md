@@ -189,10 +189,10 @@ Now we can not only see the quantitative assessment, but also imagine which of t
 I would also like to touch on one more type of request that is used quite often. Next we will talk about requests for custom saves. We can access and perform almost any manipulation on any user's saves if necessary (_and providing the project's architecture_). For example, the request below returns the user’s saves through some social network:
 ```SQL
 SELECT	created_at,
-    event_name,
-    JSONExtractString(base_parameters,'reason') AS reason, -- sync placement
-    JSONExtractString(base_parameters,'social_network') AS social_network,
-    base_parameters -- global_events_example; used in json
+  	event_name,
+    	JSONExtractString(base_parameters,'reason') AS reason, -- sync placement
+    	JSONExtractString(base_parameters,'social_network') AS social_network,
+    	base_parameters -- global_events_example; used in json
 FROM AdjustData.RealTimeAnalytics -- database_and_tableview_example
 WHERE toDate(created_at) >= '2024-01-01'
 AND event_name = 'SocialConnected'
@@ -218,13 +218,13 @@ In my work, quite often I come across users who have lost their progress in this
 Saving your data using your social network ID is truly reliable. But what if the user mixed up the social network and restored the wrong saves. The request below allows you to track the change in user saves with each action in our application:
 ```SQL
 SELECT	bundle_id,
-    app_version,
-    event_time,
-    process,
-    login,
-    if	(notEmpty((JSONExtractString(request,'state')) AS state_request),
-        (JSONExtractString(request  ,'state')) AS state_request,
-        (JSONExtractString(response ,'state')) AS state_response) AS state_encode
+    	app_version,
+ 	event_time,
+ 	process,
+  	login,
+	if	(notEmpty((JSONExtractString(request,'state')) AS state_request),
+		(JSONExtractString(request  ,'state')) AS state_request,
+		(JSONExtractString(response ,'state')) AS state_response) AS state_encode
 FROM UsersStates -- exmaple TableName
 WHERE user_id = 'FC8BF1B5-8083-41D6-A6C9-2D3D8C859565' -- user_id_example
 AND toDate(event_time) >= '2024-01-01'
