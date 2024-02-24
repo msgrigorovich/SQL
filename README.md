@@ -215,7 +215,7 @@ In this case, when the user decides to save his progress through a social networ
 In my work, quite often I come across users who have lost their progress in this way. However, if he contacted the developer, then we always have the opportunity to pull out this save and install it again. This is done in a matter of minutes.
 
 ## [Users states by any step](https://github.com/msgrigorovich/SQL/blob/main/SQL-Requests/user_states.sql)
-Saving your data using your social network ID is truly reliable. But what if the user mixed up the social network and restored the wrong saves. The request below allows you to track the change in user saves with each action in our application:
+Saving your data using your social network ID is truly reliable. But what if the user mixed up the social network and restored the wrong saves? The request below allows you to track the change in user saves with each action in our application:
 ```SQL
 SELECT	bundle_id,
     	app_version,
@@ -245,7 +245,7 @@ From the output data we can notice that the user replaced his state with the sta
 
 In fact, as mentioned above, we can track the user’s saving at any step he takes. Therefore, a user, for example, may accidentally spend some currency and ask us to roll back this change. There may be a lot of options, but not all of them are worthy of attention.
 
-I would also like to note that I did not say above, the user’s state is most often issued encrypted (_that’s why the field is called `state_encode`_). This is done from the point of view of optimizing data storage and security. In the example table with the output data, I did not encrypt them, just for clarity. But if they are encrypted, then you need to use the `decrypt`-function (-depending on what DBMS you have-), or any online decoder.
+I would also like to note that I did not say above, the user’s state is most often issued encrypted (_that’s why the field is called `state_encode`_). This is done from the point of view of optimizing data storage and security. In the example table with the output data, I did not encrypt them, just for clarity. But if they are encrypted, then you need to use the `decrypt`-function (_depending on what DBMS you have_), or any online decoder.
 
 ___
 
