@@ -4,6 +4,18 @@
     QA Analyst
 </h1>
 
+<b>Table of contents:</b>
+* [All user activity by id](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#all-user-activity-by-id)
+* [Count users by AB-group](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#count-users-by-ab-group)
+* [User activity by ads](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#user-activity-by-ads)
+* [Users ANR by ads](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#users-anr-by-ads)
+* [Users activity by ad network used](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#users-activity-by-ad-network-used)
+* [Count networks activity](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#count-networks-activity)
+* [Users states by social ID](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#users-states-by-social-id) 
+* [Users states by any step](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#users-states-by-any-step)
+  
+___
+
 Hello, I already said somewhere that I like to develop in the direction of analytics (_there is something incredible about it_) and this repository reflects the main typed requests that I use almost every day. In fact, there are many more of them, but I think these are the templates that cover the overwhelming amount of testing.
 
 In the first, I'll tell you a little about the DBMS. My experience is based on the work of ClickHouse, which is described by the OLAP (_On-Line Analytical Processing_) model. This model is denormalized and focuses on the speed of sampling and financial analytical calculations. Responses to SQL-request take the format of a columnar data structure.
@@ -185,7 +197,7 @@ You can visualize the result as a diagram (_in most cases, this is supported by 
 
 Now we can not only see the quantitative assessment, but also imagine which of the networks enjoys a higher rate.
 
-## [Users states by social id](https://github.com/msgrigorovich/SQL/blob/main/SQL-Requests/user_states_by_social.sql)
+## [Users states by social ID](https://github.com/msgrigorovich/SQL/blob/main/SQL-Requests/user_states_by_social.sql)
 I would also like to touch on one more type of request that is used quite often. Next we will talk about requests for custom saves. We can access and perform almost any manipulation on any user's saves if necessary (_and providing the project's architecture_). For example, the request below returns the user’s saves through some social network:
 ```SQL
 SELECT	created_at,
@@ -246,6 +258,18 @@ From the output data we can notice that the user replaced his state with the sta
 In fact, as mentioned above, we can track the user’s saving at any step he takes. Therefore, a user, for example, may accidentally spend some currency and ask us to roll back this change. There may be a lot of options, but not all of them are worthy of attention.
 
 I would also like to note that I did not say above, the user’s state is most often issued encrypted (_that’s why the field is called `state_encode`_). This is done from the point of view of optimizing data storage and security. In the example table with the output data, I did not encrypt them, just for clarity. But if they are encrypted, then you need to use the `decrypt`-function (-depending on what DBMS you have-), or any online decoder.
+
+___
+
+<b>Table of contents:</b>
+* [All user activity by id](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#all-user-activity-by-id)
+* [Count users by AB-group](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#count-users-by-ab-group)
+* [User activity by ads](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#user-activity-by-ads)
+* [Users ANR by ads](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#users-anr-by-ads)
+* [Users activity by ad network used](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#users-activity-by-ad-network-used)
+* [Count networks activity](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#count-networks-activity)
+* [Users states by social ID](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#users-states-by-social-id) 
+* [Users states by any step](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#users-states-by-any-step)
 
 ___
 
