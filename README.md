@@ -4,7 +4,7 @@
     QA Analyst
 </h1>
 
-Hello, I already said somewhere that I like to develop in the direction of analytics (_there is something incredible about it_) and this repository reflects the main typed request that I use almost every day. In fact, there are many more of them, but I think these are the templates that cover the overwhelming amount of testing.
+Hello, I already said somewhere that I like to develop in the direction of analytics (_there is something incredible about it_) and this repository reflects the main typed requests that I use almost every day. In fact, there are many more of them, but I think these are the templates that cover the overwhelming amount of testing.
 
 In the first, I'll tell you a little about the DBMS. My experience is based on the work of ClickHouse, which is described by the OLAP (_On-Line Analytical Processing_) model. This model is denormalized and focuses on the speed of sampling and financial analytical calculations. Responses to SQL-request take the format of a columnar data structure.
 
