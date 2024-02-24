@@ -1,8 +1,8 @@
 SELECT	created_at,
-JSONExtractString(base_parameters,'type') AS ad_type,
-JSONExtractString(base_parameters,'ad_placement') AS ad_placement,
-JSONExtractString(base_parameters,'status') AS ad_status,
-base_parameters -- global_events_example; used in json
+        JSONExtractString(base_parameters,'type') AS ad_type,
+        JSONExtractString(base_parameters,'ad_placement') AS ad_placement,
+        JSONExtractString(base_parameters,'status') AS ad_status,
+        base_parameters -- global_events_example; used in json
 FROM AdjustData.RealTimeAnalytics -- database_and_tableview_example
 WHERE toDate(created_at) = today()
 AND event_name = 'AdView'
