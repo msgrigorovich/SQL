@@ -4,6 +4,11 @@
     QA Analyst
 </h1>
 
+<p
+    align = "center">
+   <b> Hi everyone!</b>
+</p>
+
 <b>Table of contents:</b>
 * [All user activity by id](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#all-user-activity-by-id)
 * [Count users by AB-group](https://github.com/msgrigorovich/SQL/tree/main?tab=readme-ov-file#count-users-by-ab-group)
