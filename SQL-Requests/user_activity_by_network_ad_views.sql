@@ -1,9 +1,9 @@
 SELECT	app_name,
-		created_at,
-		store,
-		ad_network,
-		ad_placement,
-		ad_type
+created_at,
+store,
+ad_network,
+ad_placement,
+ad_type
 FROM AdjustData.TableViewExample -- database_and_tableview_example
 WHERE app_name = 'com.CompanyName.ProjectName'
 AND toDate(created_at) = today()
