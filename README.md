@@ -137,7 +137,7 @@ Start | 4293 |
 Complete | 4064 |
 Fail | 3 |
 
-You can visualize the result as a diagram (_in most cases, this is supported by database frameworks_)
+You can visualize the result as a diagram (_in most cases, this is supported by database frameworks_).
 ![UsersAnrByAds](https://github.com/msgrigorovich/SQL/blob/main/README_PICTURES/UsersAnrByAds.jpg?raw=true)
 Based on the response data, you can see that the amount of similar cases is quite small. Which helps to prioritize potential bugs, even the next advertising placement that has not yet been implemented.
 
